@@ -44,7 +44,7 @@ class SiteController extends Controller
 
         $dataProvider = new CActiveDataProvider('Post', [
             'pagination' => [
-                'pageSize' => 5
+                'pageSize' => 10
             ],
             'criteria' => $criteria
         ]);

@@ -12,6 +12,20 @@
         body {
             background-color: #f3f7f4;
         }
+        .dark-mode {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        html.dark-mode {
+            filter: invert(1) hue-rotate(180deg);
+            background-color: #121212 !important;
+        }
+        /* Prevent images and videos from inverting */
+        html.dark-mode img,
+        html.dark-mode video {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
         .navbar {
             background: linear-gradient(135deg, #3a6351, #a1c9a1);
         }
@@ -62,6 +76,10 @@
                 <?php } else { ?>
                     <a class="hover:underline" href="<?php echo Yii::app()->createUrl('/site/logout'); ?>">Logout (<?php echo Yii::app()->user->name; ?>)</a>
                 <?php } ?>
+                <button id="dark-mode-toggle" class="p-3 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 shadow-md transition duration-300 hover:bg-gray-300 dark:hover:bg-gray-700">
+                    <i id="dark-mode-icon" class="fas fa-moon"></i>
+                </button>
+
             </div>
         </div>
     </nav>
@@ -91,5 +109,38 @@
         <p>&copy; <?php echo date('Y'); ?> by Don Henessy David. All Rights Reserved.</p>
         <p><?php echo Yii::powered(); ?></p>
     </footer>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("dark-mode-toggle");
+    const darkModeIcon = document.getElementById("dark-mode-icon");
+    const html = document.documentElement;
+
+    // Load user preference
+    if (localStorage.getItem("darkMode") === "enabled") {
+        html.classList.add("dark-mode");
+        darkModeIcon.classList.replace("fa-moon", "fa-sun"); // Change icon to sun if dark mode is enabled
+    }
+
+    // Toggle dark mode on click
+    toggleButton.addEventListener("click", function () {
+        html.classList.toggle("dark-mode");
+
+        if (html.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+            darkModeIcon.classList.replace("fa-moon", "fa-sun"); // Swap to sun icon
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+            darkModeIcon.classList.replace("fa-sun", "fa-moon"); // Swap to moon icon
+        }
+    });
+});
+</script>
+
+
+
+
 </body>
 </html>

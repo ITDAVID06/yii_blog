@@ -118,7 +118,7 @@ class CLinkPager extends CBasePager
 		if($this->lastPageLabel===null)
 			$this->lastPageLabel=Yii::t('yii','Last &gt;&gt;');
 		if($this->header===null)
-			$this->header=Yii::t('yii','Go to page: ');
+			$this->header=Yii::t('yii','');
 
 		if(!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id']=$this->getId();
@@ -193,12 +193,33 @@ class CLinkPager extends CBasePager
 	 * @param boolean $selected whether this page button is selected
 	 * @return string the generated button
 	 */
-	protected function createPageButton($label,$page,$class,$hidden,$selected)
-	{
-		if($hidden || $selected)
-			$class.=' '.($hidden ? $this->hiddenPageCssClass : $this->selectedPageCssClass);
-		return '<li class="'.$class.'">'.CHtml::link($label,$this->createPageUrl($page)).'</li>';
-	}
+	protected function createPageButton($label, $page, $class, $hidden, $selected)
+{
+    // Tailwind classes for buttons
+    $baseClass = 'px-3 py-1 border border-gray-300 rounded-md text-sm transition duration-300';
+    $defaultClass = 'bg-white text-gray-700 hover:bg-green-500 hover:text-white';
+    $activeClass = 'bg-green-600 text-white font-semibold border-green-600';
+    $disabledClass = 'bg-gray-200 text-gray-500 cursor-not-allowed';
+
+    // Apply styles conditionally
+    if ($selected) {
+        $class .= ' ' . $activeClass;
+    } elseif ($hidden) {
+        $class .= ' ' . $disabledClass;
+    } else {
+        $class .= ' ' . $defaultClass;
+    }
+
+    return '<li class="' . $class . '">
+                <a href="' . $this->createPageUrl($page) . '" 
+                    class="block w-full h-full text-center px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400">
+                    ' . $label . '
+                </a>
+            </li>';
+}
+
+	
+
 
 	/**
 	 * @return array the begin and end pages that need to be displayed.
@@ -222,9 +243,25 @@ class CLinkPager extends CBasePager
 	 */
 	public function registerClientScript()
 	{
-		if($this->cssFile!==false)
-			self::registerCssFile($this->cssFile);
+		Yii::app()->getClientScript()->registerCss('clinkpager-styles', "
+			.yiiPager {
+				display: flex;
+				justify-content: center;
+				gap: 5px;
+				padding: 8px;
+			}
+			.yiiPager li {
+				list-style: none;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 36px;
+			}
+		");
 	}
+	
+	
+
 
 	/**
 	 * Registers the needed CSS file.
