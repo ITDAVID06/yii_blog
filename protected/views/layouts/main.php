@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="relative">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,46 +50,50 @@
         }
     </style>
 </head>
-<body>
+<body class="w-full min-h-screen flex flex-col">
     <nav class="navbar flex justify-between items-center p-4 text-white">
         <div class="container flex justify-between items-center mx-auto">
-            <a class="text-lg font-bold" href="<?php echo Yii::app()->homeUrl; ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+            <a class="text-lg font-bold" href="<?php echo Yii::app()->homeUrl; ?>">
+                <?php echo CHtml::encode(Yii::app()->name); ?>
+            </a>
             <div class="space-x-4">
                 <a class="hover:underline" href="<?php echo Yii::app()->createUrl('/site/index'); ?>"> Home</a>
                 <a class="hover:underline" href="<?php echo Yii::app()->createUrl('/site/page', array('view'=>'about')); ?>">About</a>
                 <?php if (Yii::app()->user->isGuest) { ?>
                     <a class="hover:underline" href="<?php echo Yii::app()->createUrl('/site/login'); ?>">Login</a>
                 <?php } else { ?>
-                    <a class="hover:underline" href="<?php echo Yii::app()->createUrl('/site/logout'); ?>">Logout (<?php echo Yii::app()->user->name; ?>)</a>
+                    <a class="hover:underline" href="<?php echo Yii::app()->createUrl('/site/logout'); ?>">
+                        Logout (<?php echo Yii::app()->user->name; ?>)
+                    </a>
                 <?php } ?>
             </div>
         </div>
     </nav>
-    
-    <div class="container mx-auto mt-4 p-4">
-    <div class="content-container p-6 bg-white rounded-lg shadow-lg">
-        <?php if (isset($this->breadcrumbs)) { ?>
-            <nav aria-label="breadcrumb" class="mb-4">
-                <?php $this->widget('zii.widgets.CBreadcrumbs', [
-                    'links' => $this->breadcrumbs,
-                    'homeLink' => CHtml::link(
-                        '<i class="fas fa-home text-green-600"></i><span class="ml-1">Home</span>', 
-                        Yii::app()->createUrl('site/index'), 
-                        ['class' => 'text-green-600 hover:text-green-800 font-semibold flex items-center']
-                    ),
-                    'htmlOptions' => ['class' => 'flex space-x-2 text-gray-500 text-lg'],
-                    'separator' => '<span class="text-gray-400">/</span>',
-                ]); ?>
-            </nav>
-        <?php } ?>
-        <?php echo $content; ?>
-    </div>
-</div>
 
-    
-    <footer class="text-center py-6 mt-10">
+    <div class="container mx-auto mt-4 p-4 flex-1">
+        <div class="content-container p-6 bg-white rounded-lg shadow-lg">
+            <?php if (isset($this->breadcrumbs)) { ?>
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <?php $this->widget('zii.widgets.CBreadcrumbs', [
+                        'links' => $this->breadcrumbs,
+                        'homeLink' => CHtml::link(
+                            '<i class="fas fa-home text-green-600"></i><span class="ml-1">Home</span>', 
+                            Yii::app()->createUrl('site/index'), 
+                            ['class' => 'text-green-600 hover:text-green-800 font-semibold flex items-center']
+                        ),
+                        'htmlOptions' => ['class' => 'flex space-x-2 text-gray-500 text-lg'],
+                        'separator' => '<span class="text-gray-400">/</span>',
+                    ]); ?>
+                </nav>
+            <?php } ?>
+            <?php echo $content; ?>
+        </div>
+    </div>
+
+    <footer class="text-center py-6 mt-auto bg-green-700 text-white">
         <p>&copy; <?php echo date('Y'); ?> by Don Henessy David. All Rights Reserved.</p>
         <p><?php echo Yii::powered(); ?></p>
     </footer>
 </body>
+
 </html>
