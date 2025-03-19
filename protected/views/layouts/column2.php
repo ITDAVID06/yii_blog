@@ -3,7 +3,7 @@
 <div class="container mx-auto mt-6 grid grid-cols-12 gap-6">
     <!-- Main Content (9 Columns) -->
     <div class="col-span-9">
-        <div id="content" class="bg-white p-6 rounded-lg shadow-lg">
+        <div id="content" class="bg-white p-6 rounded-lg">
             <?php echo $content; ?>
         </div>
     </div>

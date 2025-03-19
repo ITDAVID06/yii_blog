@@ -11,10 +11,10 @@
     </h2>
     
     <p class="text-gray-500 text-sm mb-2">
-        <strong>Created:</strong> <?php echo date('F j, Y, g:i a', strtotime($data->create_time)); ?>
+        <strong>Created:</strong> <?php echo date('F j, Y, g:i a', $data->create_time); ?>
     </p>
     <p class="text-gray-500 text-sm mb-2">
-        <strong>Last Updated:</strong> <?php echo date('F j, Y, g:i a', strtotime($data->update_time)); ?>
+        <strong>Last Updated:</strong> <?php echo date('F j, Y, g:i a', $data->update_time); ?>
     </p>
     
     <p class="text-green-700 text-sm font-semibold mb-4">
