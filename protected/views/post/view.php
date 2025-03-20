@@ -45,6 +45,7 @@ $this->menu=array(
             </div>
         <?php } ?>
         
+        
         <h3 class="text-xl font-semibold text-gray-800 mt-6">Leave a Comment</h3>
         
         <?php if (Yii::app()->user->hasFlash('commentSubmitted')) { ?>

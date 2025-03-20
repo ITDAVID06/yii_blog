@@ -80,26 +80,26 @@ $('.search-form form').submit(function(){
                     'class' => 'CButtonColumn',
                     'htmlOptions' => ['class' => 'p-4 text-center'],
                     'headerHtmlOptions' => ['class' => 'bg-green-600 text-white p-4'],
-                    'buttons' => [
-                        'view' => [
-                            'label' => '<i class="fas fa-eye"></i>',
-                            'imageUrl' => false,
-                            'encodeLabel' => false,
-                            'options' => ['class' => 'text-blue-500 hover:text-blue-700 text-lg mx-2']
-                        ],
-                        'update' => [
-                            'label' => '<i class="fas fa-edit"></i>',
-                            'imageUrl' => false,
-                            'encodeLabel' => false,
-                            'options' => ['class' => 'text-yellow-500 hover:text-yellow-700 text-lg mx-2']
-                        ],
-                        'delete' => [
-                            'label' => '<i class="fas fa-trash"></i>',
-                            'imageUrl' => false,
-                            'encodeLabel' => false,
-                            'options' => ['class' => 'text-red-500 hover:text-red-700 text-lg mx-2']
-                        ]
-                    ],
+                    // 'buttons' => [
+                    //     'view' => [
+                    //         'label' => '<i class="fas fa-eye"></i>',
+                    //         'imageUrl' => false,
+                    //         'encodeLabel' => false,
+                    //         'options' => ['class' => 'text-blue-500 hover:text-blue-700 text-lg mx-2']
+                    //     ],
+                    //     'update' => [
+                    //         'label' => '<i class="fas fa-edit"></i>',
+                    //         'imageUrl' => false,
+                    //         'encodeLabel' => false,  
+                    //         'options' => ['class' => 'text-yellow-500 hover:text-yellow-700 text-lg mx-2']
+                    //     ],
+                    //     'delete' => [
+                    //         'label' => '<i class="fas fa-trash"></i>',
+                    //         'imageUrl' => false,
+                    //         'encodeLabel' => false,
+                    //         'options' => ['class' => 'text-red-500 hover:text-red-700 text-lg mx-2']
+                    //     ]
+                    // ],
                     'template' => '<div class="flex justify-center space-x-3">{view} {update} {delete}</div>'
                 ]
             ]
